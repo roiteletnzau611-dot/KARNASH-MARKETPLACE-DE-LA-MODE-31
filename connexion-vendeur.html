@@ -125,8 +125,11 @@ if(email===vendeur.email && password===vendeur.password){
 
 alert("Bienvenue " + vendeur.nom + " !");
 
-window.location.href="vendeur-dashboard.html";
+localStorage.setItem("vendeurConnecte","true");
 
+alert("Connexion réussie !");
+
+window.location.href="vendeur-dashboard.html";
 }else{
 
 alert("Adresse e-mail ou mot de passe incorrect.");
