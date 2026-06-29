@@ -258,6 +258,9 @@ localStorage.removeItem("client");
 
 window.location.href="connexion-client.html";
 
+  if(localStorage.getItem("clientConnecte")!=="true"){
+    window.location.href="connexion-client.html";
+}
 }
 
 </script>
