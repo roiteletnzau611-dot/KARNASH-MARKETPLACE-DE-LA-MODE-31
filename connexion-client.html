@@ -92,8 +92,8 @@ if(email===client.email && password===client.password){
 
 alert("Connexion réussie.");
 
+localStorage.setItem("clientConnecte","true");
 window.location.href="client-dashboard.html";
-
 }else{
 
 alert("Email ou mot de passe incorrect.");
