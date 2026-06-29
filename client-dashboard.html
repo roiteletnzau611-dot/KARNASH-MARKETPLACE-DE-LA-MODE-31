@@ -118,6 +118,7 @@ color:#fff;
 }
 </style>
 
+  
 </head>
 <body>
 
@@ -130,6 +131,8 @@ Déconnexion
 </button>
 
 </header>
+
+  
 
 <div class="container">
 
@@ -148,6 +151,10 @@ Déconnexion
 <a href="#">👤 Mon profil</a>
 
 <a href="#">⚙️ Paramètres</a>
+
+  <a href="boutique.html">
+    <button>🛍️ Accéder à la boutique</button>
+</a>
 
 </div>
 
@@ -253,13 +260,9 @@ document.querySelector("header h2").innerHTML=
 }
 
 function logout(){
-
-localStorage.removeItem("client");
-
-window.location.href="connexion-client.html";
-
-  if(localStorage.getItem("clientConnecte")!=="true"){
-    window.location.href="connexion-client.html";
+    localStorage.removeItem("clientConnecte");
+    localStorage.removeItem("client");
+    window.location.href="index.html";
 }
 }
 
