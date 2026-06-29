@@ -250,6 +250,10 @@ Déconnexion
 
 <script>
 
+  if(localStorage.getItem("clientConnecte")!=="true"){
+    window.location.href="connexion-client.html";
+}
+
 const client=JSON.parse(localStorage.getItem("client"));
 
 if(client){
