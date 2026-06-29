@@ -90,10 +90,12 @@ let password=document.getElementById("password").value;
 
 if(email===client.email && password===client.password){
 
+localStorage.setItem("clientConnecte","true");
+
 alert("Connexion réussie.");
 
-localStorage.setItem("clientConnecte","true");
 window.location.href="client-dashboard.html";
+
 }else{
 
 alert("Email ou mot de passe incorrect.");
