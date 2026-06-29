@@ -3,128 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Connexion - Vogue Marketplace</title>
+<title>Connexion Client</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Segoe UI",sans-serif;
-}
-
 body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-background:linear-gradient(135deg,#6a2b83,#3d1a4d);
+margin:0;
 }
 
-.container{
-width:400px;
-padding:35px;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(15px);
-border-radius:25px;
-box-shadow:0 15px 35px rgba(0,0,0,.4);
-color:white;
-text-align:center;
-}
-
-.logo{
-width:90px;
-height:90px;
-margin:auto;
-margin-bottom:20px;
-border-radius:50%;
-background:white;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:40px;
+.box{
+background:#fff;
+padding:30px;
+width:350px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
 h2{
+text-align:center;
 margin-bottom:20px;
 }
 
-select,input{
+input{
 width:100%;
-padding:15px;
+padding:12px;
 margin:10px 0;
-border:none;
-border-radius:12px;
-font-size:16px;
-outline:none;
+border:1px solid #ccc;
+border-radius:8px;
+box-sizing:border-box;
 }
 
 button{
 width:100%;
-padding:15px;
-margin-top:15px;
+padding:12px;
+background:#007bff;
+color:white;
 border:none;
-border-radius:30px;
-background:#ffffff;
-color:#6a2b83;
-font-size:17px;
-font-weight:bold;
+border-radius:8px;
 cursor:pointer;
-transition:.3s;
+font-size:16px;
 }
 
 button:hover{
-transform:scale(1.03);
-}
-
-a{
-display:block;
-margin-top:20px;
-color:white;
-text-decoration:none;
+background:#0056b3;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<div class="box">
 
-<div class="logo">🛍️</div>
+<h2>Connexion Client</h2>
 
-<h2>Connexion</h2>
+<form id="loginForm">
 
-<select id="type">
-<option value="client">Client</option>
-<option value="vendeur">Vendeur</option>
-</select>
+<input type="email" id="email" placeholder="Adresse e-mail" required>
 
-<input type="email" id="email" placeholder="Adresse e-mail">
+<input type="password" id="password" placeholder="Mot de passe" required>
 
-<input type="password" id="password" placeholder="Mot de passe">
+<button type="submit">Se connecter</button>
 
-<button onclick="connexion()">Se connecter</button>
-
-<a href="index.html">⬅ Retour à l'accueil</a>
+</form>
 
 </div>
 
 <script>
+document.getElementById("loginForm").addEventListener("submit",function(e){
 
-function connexion(){
+e.preventDefault();
 
-let type=document.getElementById("type").value;
+let client=JSON.parse(localStorage.getItem("client"));
 
-if(type=="client"){
-window.location="client-dashboard.html";
-}
-else{
-window.location="vendeur-dashboard.html";
-}
-
+if(!client){
+alert("Aucun compte trouvé.");
+return;
 }
 
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+
+if(email===client.email && password===client.password){
+
+alert("Connexion réussie.");
+
+window.location.href="client-dashboard.html";
+
+}else{
+
+alert("Email ou mot de passe incorrect.");
+
+}
+
+});
 </script>
 
 </body>
