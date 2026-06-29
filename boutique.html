@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boutique - Vogue Marketplace</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f4f4;
+}
+
+header{
+height:250px;
+background:linear-gradient(135deg,#6a2b83,#3d1a4d);
+position:relative;
+}
+
+.banner{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.logo{
+width:120px;
+height:120px;
+border-radius:50%;
+background:white;
+position:absolute;
+left:40px;
+bottom:-60px;
+border:5px solid white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:50px;
+}
+
+.info{
+
+margin-top:80px;
+padding:20px 40px;
+background:white;
+
+}
+
+.info h1{
+color:#6a2b83;
+}
+
+.actions{
+margin-top:20px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-size:16px;
+}
+
+.favori{
+background:#e91e63;
+color:white;
+}
+
+.message{
+background:#2196f3;
+color:white;
+}
+
+.catalogue{
+background:#6a2b83;
+color:white;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card h3{
+padding:10px;
+}
+
+.price{
+padding:0 10px;
+font-size:22px;
+color:#6a2b83;
+font-weight:bold;
+}
+
+.buy{
+margin:10px;
+width:calc(100% - 20px);
+background:#6a2b83;
+color:white;
+padding:12px;
+border:none;
+border-radius:30px;
+}
+
+.section{
+padding:30px;
+background:white;
+margin:20px;
+border-radius:20px;
+}
+
+.review{
+margin-top:15px;
+padding:15px;
+background:#f8f8f8;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<img src="banniere.jpg" class="banner">
+
+<div class="logo">
+
+🏪
+
+</div>
+
+</header>
+
+<div class="info">
+
+<h1>Boutique Élégance</h1>
+
+<p>⭐⭐⭐⭐⭐ 4.9 (385 avis)</p>
+
+<p>📍 Kinshasa - Vente de vêtements, chaussures et accessoires.</p>
+
+<div class="actions">
+
+<button class="favori">❤️ Favoris</button>
+
+<button class="message">💬 Discussion</button>
+
+<button class="catalogue">📦 Catalogue</button>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="chemise.jpg">
+
+<h3>Chemise Homme</h3>
+
+<p class="price">25 $</p>
+
+<button class="buy">Ajouter au panier</button>
+
+</div>
+
+<div class="card">
+
+<img src="basket.jpg">
+
+<h3>Basket Sport</h3>
+
+<p class="price">80 $</p>
+
+<button class="buy">Ajouter au panier</button>
+
+</div>
+
+<div class="card">
+
+<img src="sac.jpg">
+
+<h3>Sac à main</h3>
+
+<p class="price">40 $</p>
+
+<button class="buy">Ajouter au panier</button>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>⭐ Avis des clients</h2>
+
+<div class="review">
+
+⭐⭐⭐⭐⭐
+
+Très bonne qualité.
+
+</div>
+
+<div class="review">
+
+⭐⭐⭐⭐
+
+Livraison rapide.
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>💬 Commentaires</h2>
+
+<textarea style="width:100%;height:120px;border-radius:10px;padding:10px;"></textarea>
+
+<br><br>
+
+<button class="catalogue">
+
+Publier
+
+</button>
+
+</div>
+
+</body>
+</html>

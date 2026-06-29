@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajouter un produit</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f6fa;
+}
+
+.container{
+    max-width:900px;
+    margin:40px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+h2{
+    color:#2c3e50;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+
+textarea{
+    resize:vertical;
+}
+
+button{
+    background:#007bff;
+    color:#fff;
+    border:none;
+    padding:15px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#0056b3;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>➕ Ajouter un produit</h2>
+
+<form>
+
+<div class="form-group">
+<label>Nom du produit</label>
+<input type="text" placeholder="Nom du produit">
+</div>
+
+<div class="form-group">
+<label>Catégorie</label>
+
+<select>
+<option>Électronique</option>
+<option>Mode</option>
+<option>Maison</option>
+<option>Beauté</option>
+<option>Sport</option>
+<option>Automobile</option>
+<option>Autres</option>
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<textarea rows="6"></textarea>
+</div>
+
+<div class="form-group">
+<label>Prix</label>
+<input type="number">
+</div>
+
+<div class="form-group">
+<label>Quantité en stock</label>
+<input type="number">
+</div>
+
+<div class="form-group">
+<label>Photos</label>
+<input type="file" multiple>
+</div>
+
+<div class="form-group">
+<label>Mode de livraison</label>
+
+<select>
+<option>Livraison à domicile</option>
+<option>Retrait en magasin</option>
+<option>Les deux</option>
+</select>
+
+</div>
+
+<button type="submit">
+Publier le produit
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

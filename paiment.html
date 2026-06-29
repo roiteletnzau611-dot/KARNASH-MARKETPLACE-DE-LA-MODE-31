@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paiement | Vogue Marketplace</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f4f4f4;
+}
+
+header{
+background:#6a2b83;
+color:white;
+padding:20px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.container{
+max-width:1100px;
+margin:40px auto;
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:30px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+h2{
+margin-bottom:20px;
+color:#6a2b83;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:5px;
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:14px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:16px;
+}
+
+.resume div{
+display:flex;
+justify-content:space-between;
+margin:15px 0;
+}
+
+.total{
+font-size:22px;
+font-weight:bold;
+color:#6a2b83;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:20px;
+background:#6a2b83;
+color:white;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#4b1c63;
+}
+</style>
+</head>
+
+<body>
+
+<header>💳 Paiement sécurisé</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Informations de paiement</h2>
+
+<label>Mode de paiement</label>
+
+<select>
+<option>Orange Money</option>
+<option>Airtel Money</option>
+<option>M-Pesa</option>
+<option>Visa / Mastercard</option>
+</select>
+
+<label>Nom du titulaire</label>
+
+<input type="text" placeholder="Votre nom">
+
+<label>Numéro de téléphone ou carte</label>
+
+<input type="text" placeholder="Ex : 0991234567">
+
+<button onclick="payer()">Payer maintenant</button>
+
+</div>
+
+<div class="card resume">
+
+<h2>Résumé</h2>
+
+<div>
+<span>Sous-total</span>
+<span>100 $</span>
+</div>
+
+<div>
+<span>Livraison</span>
+<span>5 $</span>
+</div>
+
+<div>
+<span>Commission Vogue (5 %)</span>
+<span>5 $</span>
+</div>
+
+<hr>
+
+<div class="total">
+<span>Total</span>
+<span>105 $</span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function payer(){
+alert("Paiement effectué avec succès !");
+window.location.href="client-dashboard.html";
+}
+</script>
+
+</body>
+</html>

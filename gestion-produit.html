@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion des produits</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f6fa;
+    padding:30px;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+input{
+    padding:10px;
+    width:280px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.btn{
+    background:#0d6efd;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+th,td{
+    padding:15px;
+    border-bottom:1px solid #eee;
+    text-align:left;
+}
+
+th{
+    background:#0d6efd;
+    color:white;
+}
+
+img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.action{
+    padding:8px 12px;
+    margin:2px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.edit{
+    background:#ffc107;
+}
+
+.delete{
+    background:#dc3545;
+    color:white;
+}
+
+.hide{
+    background:#6c757d;
+    color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>📦 Gestion des produits</h1>
+
+<div class="top">
+
+<input type="text" placeholder="Rechercher un produit...">
+
+<button class="btn">
++ Ajouter un produit
+</button>
+
+</div>
+
+<table>
+
+<tr>
+<th>Image</th>
+<th>Produit</th>
+<th>Prix</th>
+<th>Stock</th>
+<th>Statut</th>
+<th>Actions</th>
+</tr>
+
+<tr>
+
+<td>
+<img src="https://via.placeholder.com/60" alt="">
+</td>
+
+<td>Casque Bluetooth</td>
+
+<td>45 $</td>
+
+<td>18</td>
+
+<td>En ligne</td>
+
+<td>
+
+<button class="action edit">
+Modifier
+</button>
+
+<button class="action delete">
+Supprimer
+</button>
+
+<button class="action hide">
+Masquer
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<img src="https://via.placeholder.com/60" alt="">
+</td>
+
+<td>Chaussures Nike</td>
+
+<td>80 $</td>
+
+<td>7</td>
+
+<td>En ligne</td>
+
+<td>
+
+<button class="action edit">
+Modifier
+</button>
+
+<button class="action delete">
+Supprimer
+</button>
+
+<button class="action hide">
+Masquer
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+</html>

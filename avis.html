@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avis Clients - Marketplace</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Stars */
+.stars {
+    display: flex;
+    gap: 5px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.star {
+    color: #ccc;
+}
+
+.star.active {
+    color: gold;
+}
+
+/* Form */
+textarea {
+    width: 100%;
+    height: 80px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #28a745;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+/* Review list */
+.review {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.review strong {
+    display: block;
+}
+
+.small-stars {
+    color: gold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h2>⭐ Donner un avis</h2>
+
+        <div class="stars" id="stars">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+
+        <textarea id="comment" placeholder="Écrire votre commentaire..."></textarea>
+
+        <button onclick="addReview()">Publier</button>
+    </div>
+
+    <div class="card">
+        <h2>📊 Avis des clients</h2>
+        <div id="reviews"></div>
+    </div>
+
+</div>
+
+<script>
+let selectedRating = 0;
+
+const stars = document.querySelectorAll(".star");
+
+stars.forEach(star => {
+    star.addEventListener("click", () => {
+        selectedRating = star.getAttribute("data-value");
+
+        stars.forEach(s => {
+            s.classList.remove("active");
+        });
+
+        for(let i = 0; i < selectedRating; i++) {
+            stars[i].classList.add("active");
+        }
+    });
+});
+
+function addReview() {
+    let comment = document.getElementById("comment").value;
+
+    if(selectedRating == 0 || comment.trim() === "") {
+        alert("Veuillez donner une note et un commentaire");
+        return;
+    }
+
+    let reviewBox = document.getElementById("reviews");
+
+    let div = document.createElement("div");
+    div.classList.add("review");
+
+    let starsText = "★".repeat(selectedRating);
+
+    div.innerHTML = `
+        <strong>Client</strong>
+        <div class="small-stars">${starsText}</div>
+        <p>${comment}</p>
+    `;
+
+    reviewBox.prepend(div);
+
+    // reset
+    document.getElementById("comment").value = "";
+    selectedRating = 0;
+    stars.forEach(s => s.classList.remove("active"));
+}
+</script>
+
+</body>
+</html>

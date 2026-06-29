@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - Marketplace</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #111827;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.menu a:hover {
+    background: #1f2937;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.header {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card h3 {
+    margin: 10px 0;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+th {
+    background: #f1f5f9;
+}
+
+/* Buttons */
+.btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.approve {
+    background: #22c55e;
+    color: white;
+}
+
+.delete {
+    background: #ef4444;
+    color: white;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>👨‍💼 Admin</h2>
+
+        <div class="menu">
+            <a href="#">📊 Dashboard</a>
+            <a href="#">👤 Utilisateurs</a>
+            <a href="#">🛍️ Produits</a>
+            <a href="#">📦 Commandes</a>
+            <a href="#">💰 Paiements</a>
+            <a href="#">⚙️ Paramètres</a>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <div class="header">📊 Tableau de bord</div>
+
+        <!-- STATS -->
+        <div class="cards">
+            <div class="card">
+                <h3>Utilisateurs</h3>
+                <p>1,250</p>
+            </div>
+
+            <div class="card">
+                <h3>Produits</h3>
+                <p>540</p>
+            </div>
+
+            <div class="card">
+                <h3>Commandes</h3>
+                <p>320</p>
+            </div>
+
+            <div class="card">
+                <h3>Revenus</h3>
+                <p>$12,450</p>
+            </div>
+        </div>
+
+        <!-- USERS TABLE -->
+        <h3>👤 Utilisateurs récents</h3>
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Action</th>
+            </tr>
+
+            <tr>
+                <td>Jean Dupont</td>
+                <td>jean@mail.com</td>
+                <td>Client</td>
+                <td>
+                    <button class="approve">Activer</button>
+                    <button class="delete">Supprimer</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Sarah K.</td>
+                <td>sarah@mail.com</td>
+                <td>Vendeur</td>
+                <td>
+                    <button class="approve">Valider</button>
+                    <button class="delete">Bloquer</button>
+                </td>
+            </tr>
+        </table>
+
+        <!-- ORDERS -->
+        <h3>📦 Commandes récentes</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Statut</th>
+            </tr>
+
+            <tr>
+                <td>#001</td>
+                <td>iPhone 13</td>
+                <td>$600</td>
+                <td>En cours</td>
+            </tr>
+
+            <tr>
+                <td>#002</td>
+                <td>Chaussures Nike</td>
+                <td>$80</td>
+                <td>Livré</td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

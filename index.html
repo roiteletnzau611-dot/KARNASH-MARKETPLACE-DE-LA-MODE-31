@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vogue Marketplace</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+background:linear-gradient(135deg,#6a2b83,#3d1a4d,#1b0d25);
+background-size:300% 300%;
+animation:gradient 10s ease infinite;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card{
+width:380px;
+padding:40px 30px;
+background:rgba(255,255,255,0.12);
+border-radius:25px;
+backdrop-filter:blur(15px);
+box-shadow:0 15px 40px rgba(0,0,0,.4);
+text-align:center;
+color:white;
+}
+
+.logo-container{
+width:140px;
+height:140px;
+margin:auto;
+margin-bottom:20px;
+border-radius:50%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.logo{
+width:95%;
+height:95%;
+object-fit:contain;
+}
+
+h1{
+font-size:30px;
+margin-bottom:10px;
+}
+
+p{
+font-size:16px;
+margin-bottom:30px;
+opacity:.9;
+}
+
+.nav-container{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.btn{
+display:block;
+padding:14px;
+text-decoration:none;
+background:white;
+color:#6a2b83;
+font-weight:bold;
+border-radius:30px;
+transition:.3s;
+}
+
+.btn:hover{
+background:#f2f2f2;
+transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
+.admin{
+background:#e74c3c;
+color:white;
+}
+
+.admin:hover{
+background:#c0392b;
+}
+
+.footer{
+margin-top:30px;
+font-size:13px;
+opacity:.7;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="logo-container">
+<img src="logo.png" alt="Logo Vogue Marketplace" class="logo">
+</div>
+
+<h1>Vogue Marketplace</h1>
+
+<p>Bienvenue sur votre plateforme de vente et d'achat de vêtements.</p>
+
+<div class="nav-container">
+
+<a href="inscription-client.html" class="btn">
+👤 Inscription Client
+</a>
+
+<a href="inscription-vendeur.html" class="btn">
+🏪 Inscription Vendeur
+</a>
+
+<a href="connexion.html" class="btn">
+🔑 Connexion
+</a>
+
+<a href="connexion-admin.html" class="btn admin">
+🛡️ Accès Administrateur
+</a>
+
+</div>
+
+<div class="footer">
+© 2026 Vogue Marketplace - Tous droits réservés.
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistiques</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Vendeur</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Produits</li>
+            <li>Commandes</li>
+            <li>Statistiques</li>
+            <li>Messages</li>
+            <li>Avis</li>
+            <li>Paramètres</li>
+        </ul>
+    </div>
+
+    <!-- Contenu -->
+    <div class="content">
+        <h1>📈 Statistiques</h1>
+
+        <div class="charts">
+
+            <canvas id="salesChart"></canvas>
+            <canvas id="visitorChart"></canvas>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+const salesChart = new Chart(document.getElementById('salesChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+        datasets: [{
+            label: 'Ventes',
+            data: [12, 19, 8, 15, 22, 30, 18],
+            backgroundColor: 'blue'
+        }]
+    }
+});
+
+const visitorChart = new Chart(document.getElementById('visitorChart'), {
+    type: 'line',
+    data: {
+        labels: ['S1', 'S2', 'S3', 'S4'],
+        datasets: [{
+            label: 'Visiteurs',
+            data: [200, 350, 400, 600],
+            borderColor: 'green'
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

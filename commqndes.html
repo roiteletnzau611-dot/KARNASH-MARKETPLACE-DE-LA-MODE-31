@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion des commandes</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:30px;
+}
+
+h1{
+margin-bottom:25px;
+color:#222;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:30px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+text-align:center;
+}
+
+.card h2{
+font-size:28px;
+margin-bottom:8px;
+}
+
+table{
+width:100%;
+background:#fff;
+border-collapse:collapse;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+th{
+background:#0d6efd;
+color:#fff;
+padding:15px;
+}
+
+td{
+padding:15px;
+border-bottom:1px solid #eee;
+}
+
+select{
+padding:8px;
+border-radius:6px;
+}
+
+button{
+padding:8px 14px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin:2px;
+}
+
+.details{
+background:#0d6efd;
+color:#fff;
+}
+
+.facture{
+background:#198754;
+color:#fff;
+}
+
+.message{
+background:#ffc107;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>📋 Gestion des commandes</h1>
+
+<div class="stats">
+
+<div class="card">
+<h2>18</h2>
+<p>En attente</p>
+</div>
+
+<div class="card">
+<h2>42</h2>
+<p>Confirmées</p>
+</div>
+
+<div class="card">
+<h2>16</h2>
+<p>Expédiées</p>
+</div>
+
+<div class="card">
+<h2>215</h2>
+<p>Livrées</p>
+</div>
+
+</div>
+
+<table>
+
+<tr>
+<th>N°</th>
+<th>Client</th>
+<th>Produit</th>
+<th>Montant</th>
+<th>Statut</th>
+<th>Actions</th>
+</tr>
+
+<tr>
+
+<td>#1001</td>
+
+<td>Jean Mukendi</td>
+
+<td>Casque Bluetooth</td>
+
+<td>45 $</td>
+
+<td>
+
+<select>
+<option>En attente</option>
+<option>Confirmée</option>
+<option>Préparation</option>
+<option>Expédiée</option>
+<option>Livrée</option>
+<option>Annulée</option>
+</select>
+
+</td>
+
+<td>
+
+<button class="details">
+Détails
+</button>
+
+<button class="facture">
+Facture
+</button>
+
+<button class="message">
+Message
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>#1002</td>
+
+<td>Grâce Kasongo</td>
+
+<td>Chaussures Nike</td>
+
+<td>80 $</td>
+
+<td>
+
+<select>
+<option>Confirmée</option>
+<option>Préparation</option>
+<option>Expédiée</option>
+<option>Livrée</option>
+<option>Annulée</option>
+</select>
+
+</td>
+
+<td>
+
+<button class="details">
+Détails
+</button>
+
+<button class="facture">
+Facture
+</button>
+
+<button class="message">
+Message
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+</html>
