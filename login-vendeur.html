@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription Vendeur</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+width:420px;
+background:#fff;
+padding:30px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+color:#2c3e50;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#28a745;
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#218838;
+}
+
+p{
+text-align:center;
+margin-top:15px;
+}
+
+a{
+color:#007bff;
+text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h2>🏪 Inscription Vendeur</h2>
+
+<form id="registerSeller">
+
+<input type="text" id="nom" placeholder="Nom complet" required>
+
+<input type="text" id="boutique" placeholder="Nom de la boutique" required>
+
+<input type="email" id="email" placeholder="Adresse e-mail" required>
+
+<input type="password" id="password" placeholder="Mot de passe" required>
+
+<input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
+
+<button type="submit">Créer mon compte</button>
+
+</form>
+
+<p>
+Déjà inscrit ?
+<a href="login-vendeur.html">Se connecter</a>
+</p>
+
+</div>
+
+<script>
+
+document.getElementById("registerSeller").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const nom=document.getElementById("nom").value.trim();
+const boutique=document.getElementById("boutique").value.trim();
+const email=document.getElementById("email").value.trim();
+const password=document.getElementById("password").value;
+const confirm=document.getElementById("confirmPassword").value;
+
+if(password!==confirm){
+alert("Les mots de passe ne correspondent pas.");
+return;
+}
+
+const vendeur={
+nom,
+boutique,
+email,
+password
+};
+
+localStorage.setItem("vendeur",JSON.stringify(vendeur));
+localStorage.setItem("vendeurConnecte","true");
+
+alert("Compte créé avec succès !");
+
+window.location.href="vendeur-dashboard.html";
+
+});
+
+</script>
+
+</body>
+</html>
