@@ -1,41 +1,14 @@
 <script>
     const conteneur = document.getElementById("listeProduits");
-    const tousLesProduits = JSON.parse(localStorage.getItem("produits")) || [];
-    
-    // C'est ici qu'on filtre pour H-love
-    const mesProduits = tousLesProduits.filter(p => p.boutique === "H-love");
+    const vendeur = JSON.parse(localStorage.getItem("vendeurConnecte"));
 
-    if (mesProduits.length === 0) {
-        conteneur.innerHTML = "<p>Aucun produit dans votre boutique.</p>";
-    } else {
-        mesProduits.forEach(produit => {
-            const div = document.createElement("div");
-            div.className = "carte";
-            div.innerHTML = `
-                ${produit.photo ? `<img src="${produit.photo}">` : ""}
-                <h3>${produit.nom}</h3>
-                <p>Prix: ${produit.prix} €</p>
-                <p>${produit.description}</p>
-            `;
-            conteneur.appendChild(div);
-        });
-    }
-
-    const conteneur = document.getElementById("listeProduits");
-    const donnees = localStorage.getItem("produits");
-
-    if (!donnees) {
-        conteneur.innerHTML = "<p>Aucun produit enregistré en mémoire.</p>";
-    } else {
-        const tousLesProduits = JSON.parse(donnees);
-        
-        // On filtre en cherchant "H-love"
-        const mesProduits = tousLesProduits.filter(p => p.boutique === "H-love");
+    if (vendeur) {
+        const tousLesProduits = JSON.parse(localStorage.getItem("produits")) || [];
+        // On filtre avec le nom de la boutique du vendeur connecté
+        const mesProduits = tousLesProduits.filter(p => p.boutique === vendeur.nomBoutique);
 
         if (mesProduits.length === 0) {
-            conteneur.innerHTML = "<p>Aucun produit trouvé pour la boutique H-love.</p>";
-            // DEBUG : Affiche dans la console les boutiques trouvées pour vous aider à corriger
-            console.log("Boutiques enregistrées :", tousLesProduits.map(p => p.boutique));
+            conteneur.innerHTML = "<p>Aucun produit dans votre boutique.</p>";
         } else {
             conteneur.innerHTML = ""; // Vide le message d'attente
             mesProduits.forEach(produit => {
@@ -50,6 +23,7 @@
                 conteneur.appendChild(div);
             });
         }
+    } else {
+        conteneur.innerHTML = "<p>Veuillez vous connecter pour voir vos produits.</p>";
     }
-
 </script>
