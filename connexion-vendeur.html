@@ -145,5 +145,38 @@ alert("Adresse e-mail ou mot de passe incorrect.");
 });
 </script>
 
+  <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion Vendeur</title>
+</head>
+<body>
+
+    <form id="formConnexion">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="motDePasse" placeholder="Mot de passe" required>
+        <button type="submit">Se connecter</button>
+    </form>
+
+    <script>
+    document.getElementById("formConnexion").addEventListener("submit", function(e) {
+  // --- À SUPPRIMER ---
+const monNomDeBoutique = "....";
+const tousLesProduits = JSON.parse(localStorage.getItem("produits")) || [];
+const mesProduits = tousLesProduits.filter(p => p.boutique === monNomDeBoutique);
+// -------------------
+        if (vendeur) {
+            alert("Connexion réussie !");
+            // On enregistre les infos du vendeur connecté
+            localStorage.setItem("vendeurConnecte", JSON.stringify(vendeur));
+            window.location.href = "dashboard-vendeur.html";
+        } else {
+            alert("Email ou mot de passe incorrect.");
+        }
+    });
+    </script>
+</body>
+</html>
 </body>
 </html>
