@@ -1,202 +1,99 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ajouter un produit</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f5f6fa;
-}
-
-.container{
-    max-width:900px;
-    margin:40px auto;
-    background:#fff;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-}
-
-h2{
-    color:#2c3e50;
-    margin-bottom:20px;
-}
-
-.form-group{
-    margin-bottom:20px;
-}
-
-label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-}
-
-input,
-textarea,
-select{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:10px;
-    font-size:15px;
-}
-
-textarea{
-    resize:vertical;
-}
-
-button{
-    background:#007bff;
-    color:#fff;
-    border:none;
-    padding:15px 30px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-}
-
-button:hover{
-    background:#0056b3;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un produit</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f5f6fa; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
+        h2 { color: #2c3e50; text-align: center; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        textarea { height: 100px; resize: vertical; }
+        button { width: 100%; background: #007bff; color: #fff; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background: #0056b3; }
+    </style>
 </head>
 <body>
 
 <div class="container">
-
-<h2>➕ Ajouter un produit</h2>
-
-<form>
+    <h2>➕ Ajouter un produit</h2>
 
     <form id="formProduit">
+        <div class="form-group">
+            <input type="text" id="nom" placeholder="Nom du produit" required>
+        </div>
 
-<input type="text" id="nom" placeholder="Nom du produit" required>
+        <div class="form-group">
+            <select id="categorie" required>
+                <option value="">Choisir une catégorie</option>
+                <option>Maison</option>
+                <option>Mode</option>
+                <option>Beauté</option>
+                <option>Électronique</option>
+            </select>
+        </div>
 
-<select id="categorie" required>
-    <option value="">Choisir une catégorie</option>
-    <option>Maison</option>
-    <option>Mode</option>
-    <option>Beauté</option>
-    <option>Électronique</option>
-</select>
+        <div class="form-group">
+            <input type="number" id="prix" placeholder="Prix" required>
+        </div>
 
-<input type="number" id="prix" placeholder="Prix" required>
+        <div class="form-group">
+            <textarea id="description" placeholder="Description"></textarea>
+        </div>
 
-<textarea id="description" placeholder="Description"></textarea>
+        <div class="form-group">
+            <label>Photo du produit :</label>
+            <input type="file" id="photo" accept="image/*">
+        </div>
 
-<input type="file" id="photo" accept="image/*">
-
-<button type="submit">Publier le produit</button>
-
-
-
-<div class="form-group">
-<label>Nom du produit</label>
-<input type="text" placeholder="Nom du produit">
+        <button type="submit">Publier le produit</button>
+    </form>
 </div>
 
-<div class="form-group">
-<label>Catégorie</label>
+<script>
+    document.getElementById("formProduit").addEventListener("submit", function(e) {
+        e.preventDefault();
 
-<select>
-<option>Électronique</option>
-<option>Mode</option>
-<option>Maison</option>
-<option>Beauté</option>
-<option>Sport</option>
-<option>Automobile</option>
-<option>Autres</option>
-</select>
+        const lecteur = new FileReader();
+        const fichier = document.getElementById("photo").files[0];
 
-</div>
+        function enregistrer(photo) {
+            const produit = {
+                nom: document.getElementById("nom").value,
+                categorie: document.getElementById("categorie").value,
+                prix: document.getElementById("prix").value,
+                description: document.getElementById("description").value,
+                photo: photo
+            };
 
-<div class="form-group">
-<label>Description</label>
-<textarea rows="6"></textarea>
-</div>
+            // Récupération des produits existants ou création d'un tableau vide
+            let produits = JSON.parse(localStorage.getItem("produits")) || [];
+            
+            // Ajout du nouveau produit
+            produits.push(produit);
+            
+            // Sauvegarde dans le localStorage
+            localStorage.setItem("produits", JSON.stringify(produits));
 
-<div class="form-group">
-<label>Prix</label>
-<input type="number">
-</div>
+            alert("Produit publié avec succès.");
+            
+            // Redirection (Assurez-vous que le fichier mes-produits.html existe)
+            window.location.href = "mes-produits.html";
+        }
 
-<div class="form-group">
-<label>Quantité en stock</label>
-<input type="number">
-</div>
-
-<div class="form-group">
-<label>Photos</label>
-<input type="file" multiple>
-</div>
-
-<div class="form-group">
-<label>Mode de livraison</label>
-
-<select>
-<option>Livraison à domicile</option>
-<option>Retrait en magasin</option>
-<option>Les deux</option>
-</select>
-
-</div>
-
-<button type="submit">
-Publier le produit
-</button>
-
-</form>
-
-</div>
-
-    <script>
-document.getElementById("formProduit").addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const lecteur=new FileReader();
-const fichier=document.getElementById("photo").files[0];
-
-function enregistrer(photo){
-
-const produit={
-nom:document.getElementById("nom").value,
-categorie:document.getElementById("categorie").value,
-prix:document.getElementById("prix").value,
-description:document.getElementById("description").value,
-photo:photo
-};
-
-let produits=JSON.parse(localStorage.getItem("produits"))||[];
-
-produits.push(produit);
-
-localStorage.setItem("produits",JSON.stringify(produits));
-
-alert("Produit publié avec succès.");
-
-window.location.href="mes-produits.html";
-
-}
-
-if(fichier){
-lecteur.onload=function(){
-enregistrer(lecteur.result);
-}
-lecteur.readAsDataURL(fichier);
-}else{
-enregistrer("");
-}
-
-});
+        // Gestion de l'image (conversion en base64)
+        if (fichier) {
+            lecteur.onload = function() {
+                enregistrer(lecteur.result);
+            }
+            lecteur.readAsDataURL(fichier);
+        } else {
+            enregistrer(""); // Pas d'image
+        }
+    });
 </script>
 
 </body>
