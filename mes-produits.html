@@ -20,4 +20,36 @@
             conteneur.appendChild(div);
         });
     }
+
+    const conteneur = document.getElementById("listeProduits");
+    const donnees = localStorage.getItem("produits");
+
+    if (!donnees) {
+        conteneur.innerHTML = "<p>Aucun produit enregistré en mémoire.</p>";
+    } else {
+        const tousLesProduits = JSON.parse(donnees);
+        
+        // On filtre en cherchant "H-love"
+        const mesProduits = tousLesProduits.filter(p => p.boutique === "H-love");
+
+        if (mesProduits.length === 0) {
+            conteneur.innerHTML = "<p>Aucun produit trouvé pour la boutique H-love.</p>";
+            // DEBUG : Affiche dans la console les boutiques trouvées pour vous aider à corriger
+            console.log("Boutiques enregistrées :", tousLesProduits.map(p => p.boutique));
+        } else {
+            conteneur.innerHTML = ""; // Vide le message d'attente
+            mesProduits.forEach(produit => {
+                const div = document.createElement("div");
+                div.className = "carte";
+                div.innerHTML = `
+                    ${produit.photo ? `<img src="${produit.photo}">` : ""}
+                    <h3>${produit.nom}</h3>
+                    <p>Prix: ${produit.prix} €</p>
+                    <p>${produit.description}</p>
+                `;
+                conteneur.appendChild(div);
+            });
+        }
+    }
+
 </script>
