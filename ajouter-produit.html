@@ -61,14 +61,31 @@
         const fichier = document.getElementById("photo").files[0];
 
      // Dans mes-produits.html, le début du script doit ressembler à ça :
-const monNomDeBoutique = "H-love"; 
-const tousLesProduits = JSON.parse(localStorage.getItem("produits")) || [];
+// ... votre code existant ...
+const fichier = document.getElementById("photo").files[0];
 
-// On filtre pour ne garder que ceux de "H-love"
-const mesProduits = tousLesProduits.filter(p => p.boutique === monNomDeBoutique);
+// AJOUTEZ CE BLOC ICI :
+function enregistrer(photo) {
+    const produit = {
+        boutique: "H-love", 
+        nom: document.getElementById("nom").value,
+        categorie: document.getElementById("categorie").value,
+        prix: document.getElementById("prix").value,
+        description: document.getElementById("description").value,
+        photo: photo
+    };
 
-// Ensuite, vous utilisez 'mesProduits' pour créer vos cartes (forEach...)
-        }
+    let produits = JSON.parse(localStorage.getItem("produits")) || [];
+    produits.push(produit);
+    localStorage.setItem("produits", JSON.stringify(produits));
+
+    alert("Produit publié avec succès.");
+    window.location.href = "mes-produits.html";
+}
+
+// Puis vient votre bloc "if (fichier) {" que vous avez déjà
+if (fichier) {
+// ...
 
         // Gestion de l'image (conversion en base64)
         if (fichier) {
