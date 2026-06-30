@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accueil Client</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+header{
+background:#2563eb;
+color:white;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h1{
+font-size:28px;
+}
+
+.logout{
+background:#dc3545;
+color:white;
+padding:12px 20px;
+border-radius:8px;
+text-decoration:none;
+}
+
+.container{
+padding:20px;
+}
+
+h2{
+margin-bottom:15px;
+color:#333;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{
+margin:10px 0;
+}
+
+.card button{
+width:100%;
+padding:10px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.card button:hover{
+background:#1d4ed8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🏪 Accueil Client</h1>
+
+<a href="index.html" class="logout">Déconnexion</a>
+
+</header>
+
+<div class="container">
+
+<h2>🔥 Boutiques populaires</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://via.placeholder.com/300x200">
+<h3>Mode Élégance</h3>
+<button>Voir la boutique</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x200">
+<h3>Fashion Plus</h3>
+<button>Voir la boutique</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x200">
+<h3>Karnash Store</h3>
+<button>Voir la boutique</button>
+</div>
+
+</div>
+
+<br><br>
+
+<h2>⭐ Produits recommandés</h2>
+
+<div id="listeProduits" class="grid"></div>
+
+</div>
+
+<script>
+
+const produits=JSON.parse(localStorage.getItem("produits"))||[];
+
+const liste=document.getElementById("listeProduits");
+
+produits.forEach(function(p){
+
+liste.innerHTML+=`
+
+<div class="card">
+
+<img src="${p.photo || 'https://via.placeholder.com/300'}">
+
+<h3>${p.nom}</h3>
+
+<p>${p.prix} FC</p>
+
+<button>Acheter</button>
+
+</div>
+
+`;
+
+});
+
+</script>
+
+</body>
+</html>

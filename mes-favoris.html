@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes Favoris</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+header{
+background:#2563eb;
+color:white;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header a{
+background:white;
+color:#2563eb;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{
+margin:10px 0;
+}
+
+.prix{
+color:#28a745;
+font-size:20px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+.panier{
+background:#2563eb;
+color:white;
+}
+
+.supprimer{
+background:#dc3545;
+color:white;
+}
+
+.vide{
+text-align:center;
+margin-top:80px;
+font-size:22px;
+color:#888;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>❤️ Mes Favoris</h1>
+
+<a href="client-dashboard.html">⬅ Retour</a>
+
+</header>
+
+<div id="favoris" class="container"></div>
+
+<script>
+
+const favoris=JSON.parse(localStorage.getItem("favoris"))||[];
+
+const zone=document.getElementById("favoris");
+
+if(favoris.length===0){
+
+zone.innerHTML="<div class='vide'>Vous n'avez aucun favori.</div>";
+
+}else{
+
+favoris.forEach(function(p,index){
+
+zone.innerHTML+=`
+
+<div class="card">
+
+<img src="${p.photo || 'https://via.placeholder.com/300'}">
+
+<h3>${p.nom}</h3>
+
+<div class="prix">${p.prix} FC</div>
+
+<button class="panier">Ajouter au panier</button>
+
+<button class="supprimer" onclick="supprimer(${index})">Retirer</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function supprimer(i){
+
+favoris.splice(i,1);
+
+localStorage.setItem("favoris",JSON.stringify(favoris));
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>

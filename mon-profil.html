@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon Profil</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+header{
+background:#2563eb;
+color:white;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header a{
+background:white;
+color:#2563eb;
+padding:10px 20px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+.container{
+max-width:600px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.photo{
+text-align:center;
+margin-bottom:20px;
+}
+
+.photo img{
+width:140px;
+height:140px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #2563eb;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>👤 Mon Profil</h1>
+
+<a href="client-dashboard.html">⬅ Retour</a>
+
+</header>
+
+<div class="container">
+
+<div class="photo">
+<img id="photoProfil" src="https://via.placeholder.com/140">
+</div>
+
+<form id="profilForm">
+
+<input type="text" id="nom" placeholder="Nom complet">
+
+<input type="email" id="email" placeholder="Adresse e-mail">
+
+<input type="tel" id="telephone" placeholder="Téléphone">
+
+<input type="password" id="password" placeholder="Nouveau mot de passe">
+
+<button type="submit">
+💾 Enregistrer les modifications
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+let client = JSON.parse(localStorage.getItem("client")) || {};
+
+nom.value = client.nom || "";
+email.value = client.email || "";
+telephone.value = client.telephone || "";
+
+if(client.photo){
+document.getElementById("photoProfil").src = client.photo;
+}
+
+profilForm.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+client.nom = nom.value;
+client.email = email.value;
+client.telephone = telephone.value;
+
+if(password.value!=""){
+client.password = password.value;
+}
+
+localStorage.setItem("client",JSON.stringify(client));
+
+alert("Profil mis à jour avec succès.");
+
+});
+
+</script>
+
+</body>
+</html>

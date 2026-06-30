@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes commandes</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+header{
+background:#2563eb;
+color:white;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h1{
+font-size:28px;
+}
+
+.retour{
+background:white;
+color:#2563eb;
+padding:10px 18px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.commande{
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.commande h3{
+color:#2563eb;
+margin-bottom:10px;
+}
+
+.commande p{
+margin:8px 0;
+}
+
+.statut{
+display:inline-block;
+background:#ffc107;
+padding:8px 15px;
+border-radius:20px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.vide{
+text-align:center;
+font-size:20px;
+margin-top:80px;
+color:#888;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🛍️ Mes commandes</h1>
+
+<a href="client-dashboard.html" class="retour">⬅ Retour</a>
+
+</header>
+
+<div class="container" id="listeCommandes">
+
+</div>
+
+<script>
+
+const commandes=JSON.parse(localStorage.getItem("commandes"))||[];
+
+const liste=document.getElementById("listeCommandes");
+
+if(commandes.length===0){
+
+liste.innerHTML='<div class="vide">Aucune commande pour le moment.</div>';
+
+}else{
+
+commandes.forEach(function(c){
+
+liste.innerHTML+=`
+
+<div class="commande">
+
+<h3>${c.nom}</h3>
+
+<p><strong>Prix :</strong> ${c.prix} FC</p>
+
+<p><strong>Date :</strong> ${c.date}</p>
+
+<span class="statut">En attente</span>
+
+</div>
+
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
