@@ -190,7 +190,9 @@ border-radius:10px;
 
 <p class="price">25 $</p>
 
-<button class="buy">Ajouter au panier</button>
+<button onclick="ajouterAuPanier()">
+🛒 Ajouter au panier
+</button>
 
 </div>
 
@@ -257,6 +259,23 @@ Publier
 </button>
 
 </div>
+<script>
+function ajouterAuPanier(){
 
+let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+panier.push({
+nom:"Nom du produit",
+prix:50,
+image:"image.jpg",
+quantite:1
+});
+
+localStorage.setItem("panier", JSON.stringify(panier));
+
+alert("Produit ajouté au panier.");
+
+}
+</script>
 </body>
 </html>
