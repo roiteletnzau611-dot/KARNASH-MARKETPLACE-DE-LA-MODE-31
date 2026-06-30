@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ma Boutique</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+header{
+background:#1f4e79;
+color:#fff;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:1100px;
+margin:30px auto;
+padding:20px;
+}
+
+.card{
+background:#fff;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+text-align:center;
+margin-bottom:30px;
+}
+
+.card img{
+width:150px;
+height:150px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #1f4e79;
+margin-bottom:15px;
+}
+
+h2{
+color:#1f4e79;
+margin-bottom:10px;
+}
+
+p{
+margin:8px 0;
+font-size:17px;
+}
+
+h3{
+margin:25px 0 15px;
+color:#1f4e79;
+}
+
+.produits{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.produit{
+background:#fff;
+padding:15px;
+border-radius:12px;
+box-shadow:0 5px 10px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.produit img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+button{
+margin-top:20px;
+padding:12px 20px;
+background:#1f4e79;
+color:#fff;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#163c5e;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🏪 Ma Boutique</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<img id="photo" src="https://via.placeholder.com/150">
+
+<h2 id="boutique">Nom de la boutique</h2>
+
+<p><strong>Responsable :</strong> <span id="nom"></span></p>
+
+<p><strong>Email :</strong> <span id="email"></span></p>
+
+<p><strong>Téléphone :</strong> <span id="telephone"></span></p>
+
+<button onclick="window.location.href='vendeur-dashboard.html'">
+⬅ Retour au tableau de bord
+</button>
+
+</div>
+
+<h3>📦 Produits publiés</h3>
+
+<div class="produits" id="listeProduits"></div>
+
+</div>
+
+<script>
+
+const vendeur = JSON.parse(localStorage.getItem("vendeur"));
+
+if(!vendeur){
+window.location.href="login-vendeur.html";
+}
+
+document.getElementById("boutique").textContent = vendeur.boutique;
+document.getElementById("nom").textContent = vendeur.nom;
+document.getElementById("email").textContent = vendeur.email;
+document.getElementById("telephone").textContent = vendeur.telephone;
+
+if(vendeur.photo){
+document.getElementById("photo").src = vendeur.photo;
+}
+
+const produits = JSON.parse(localStorage.getItem("produits")) || [];
+
+const liste = document.getElementById("listeProduits");
+
+if(produits.length===0){
+
+liste.innerHTML="<p>Aucun produit publié.</p>";
+
+}else{
+
+produits.forEach(function(p){
+
+liste.innerHTML += `
+<div class="produit">
+
+<img src="${p.photo || 'https://via.placeholder.com/250'}">
+
+<h3>${p.nom}</h3>
+
+<p><strong>Catégorie :</strong> ${p.categorie}</p>
+
+<p><strong>Prix :</strong> ${p.prix} FC</p>
+
+<p>${p.description}</p>
+
+</div>
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
