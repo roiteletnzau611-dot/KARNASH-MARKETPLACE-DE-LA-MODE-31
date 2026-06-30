@@ -207,6 +207,93 @@ onclick="window.location.href='client-dashboard.html'">
 </div>
 
 </div>
+<script>
+let panier = JSON.parse(localStorage.getItem("panier")) || [];
 
+const listePanier = document.getElementById("listePanier");
+
+function afficherPanier() {
+
+    listePanier.innerHTML = "";
+
+    let sousTotal = 0;
+
+    if (panier.length === 0) {
+        listePanier.innerHTML = "<h2 style='text-align:center;'>🛒 Votre panier est vide.</h2>";
+        document.getElementById("sousTotal").innerText = "0 $";
+        document.getElementById("total").innerText = "0 $";
+        return;
+    }
+
+    panier.forEach((produit, index) => {
+
+        sousTotal += produit.prix * produit.quantite;
+
+        listePanier.innerHTML += `
+        <div class="produit">
+
+            <img src="${produit.image}">
+
+            <div class="info">
+
+                <h3>${produit.nom}</h3>
+
+                <div class="prix">${produit.prix} $</div>
+
+                <div class="actions">
+
+                    <button onclick="diminuer(${index})">-</button>
+
+                    <span>${produit.quantite}</span>
+
+                    <button onclick="augmenter(${index})">+</button>
+
+                    <button class="supprimer" onclick="supprimer(${index})">
+                    🗑
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+    document.getElementById("sousTotal").innerText = sousTotal + " $";
+    document.getElementById("total").innerText = (sousTotal + 5) + " $";
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+
+}
+
+function augmenter(index){
+    panier[index].quantite++;
+    afficherPanier();
+}
+
+function diminuer(index){
+
+    if(panier[index].quantite>1){
+        panier[index].quantite--;
+    }
+
+    afficherPanier();
+
+}
+
+function supprimer(index){
+
+    panier.splice(index,1);
+
+    afficherPanier();
+
+}
+
+afficherPanier();
+
+</script>
+  
 </body>
 </html>
