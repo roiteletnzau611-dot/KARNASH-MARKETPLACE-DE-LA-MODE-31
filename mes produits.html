@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Produits</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f6fa; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        h1 { text-align: center; color: #2c3e50; }
+        .grille-produits { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .carte { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
+        .carte img { max-width: 100%; height: 150px; object-fit: cover; border-radius: 5px; }
+        .prix { color: #007bff; font-weight: bold; font-size: 1.2em; }
+        .btn-retour { display: block; width: 200px; margin: 30px auto; padding: 10px; text-align: center; background: #6c757d; color: #fff; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mes Produits</h1>
+    <div id="listeProduits" class="grille-produits"></div>
+    <a href="index.html" class="btn-retour">Ajouter un autre produit</a>
+</div>
+
+<script>
+    // Récupérer les produits depuis le localStorage
+    const produits = JSON.parse(localStorage.getItem("produits")) || [];
+    const conteneur = document.getElementById("listeProduits");
+
+    if (produits.length === 0) {
+        conteneur.innerHTML = "<p style='text-align:center;'>Aucun produit pour le moment.</p>";
+    } else {
+        produits.forEach(produit => {
+            const carte = document.createElement("div");
+            carte.className = "carte";
+            
+            carte.innerHTML = `
+                ${produit.photo ? `<img src="${produit.photo}" alt="${produit.nom}">` : ""}
+                <h3>${produit.nom}</h3>
+                <p><strong>Catégorie:</strong> ${produit.categorie}</p>
+                <p>${produit.description}</p>
+                <p class="prix">${produit.prix} €</p>
+            `;
+            conteneur.appendChild(carte);
+        });
+    }
+</script>
+
+</body>
+</html>
