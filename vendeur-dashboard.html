@@ -148,6 +148,27 @@ localStorage.removeItem("vendeurConnecte");
 window.location.href="login-vendeur.html";
 }
 
+// Vérifie que le vendeur est connecté
+if (localStorage.getItem("vendeurConnecte") !== "true") {
+    window.location.href = "login-vendeur.html";
+}
+
+// Fonction de navigation
+function ouvrir(page) {
+    window.location.href = page;
+}
+
+// Connexion des boutons du tableau de bord
+document.getElementById("btnProduits").onclick = () => ouvrir("mes-produits.html");
+document.getElementById("btnAjouter").onclick = () => ouvrir("ajouter-produit.html");
+document.getElementById("btnCommandes").onclick = () => ouvrir("commandes.html");
+document.getElementById("btnRevenus").onclick = () => ouvrir("revenus.html");
+document.getElementById("btnStatistiques").onclick = () => ouvrir("statistiques.html");
+document.getElementById("btnMessages").onclick = () => ouvrir("messages.html");
+document.getElementById("btnAvis").onclick = () => ouvrir("avis.html");
+document.getElementById("btnParametres").onclick = () => ouvrir("parametres.html");
+
+
 </script>
 
 </body>
