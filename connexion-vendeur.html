@@ -166,15 +166,17 @@ const monNomDeBoutique = "....";
 const tousLesProduits = JSON.parse(localStorage.getItem("produits")) || [];
 const mesProduits = tousLesProduits.filter(p => p.boutique === monNomDeBoutique);
 // -------------------
-        if (vendeur) {
-            alert("Connexion réussie !");
-            // On enregistre les infos du vendeur connecté
-            localStorage.setItem("vendeurConnecte", JSON.stringify(vendeur));
-            window.location.href = "dashboard-vendeur.html";
-        } else {
-            alert("Email ou mot de passe incorrect.");
-        }
-    });
+       const vendeur = comptes.find(c => c.email === emailSaisi && c.mdp === mdpSaisi);
+
+    // À PARTIR D'ICI, VOUS REMPLACEZ LE RESTE :
+    if (vendeur) {
+        alert("Connexion réussie !");
+        localStorage.setItem("vendeurConnecte", JSON.stringify(vendeur));
+        window.location.href = "dashboard-vendeur.html"; 
+    } else {
+        alert("Email ou mot de passe incorrect.");
+    }
+}); // C'est cette parenthèse et cette accolade qui ferment le .addEventListener
     </script>
 </body>
 </html>
