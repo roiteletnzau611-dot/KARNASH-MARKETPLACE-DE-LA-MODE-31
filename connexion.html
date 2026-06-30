@@ -111,20 +111,39 @@ text-decoration:none;
 </div>
 
 <script>
+function connexion() {
+    // 1. Récupérer les valeurs du formulaire
+    const type = document.getElementById("type").value;
+    const emailSaisi = document.getElementById("email").value;
+    const mdpSaisi = document.getElementById("password").value;
 
-function connexion(){
+    // 2. Déterminer où chercher (comptesClients ou comptesVendeurs)
+    const cleStockage = (type === "vendeur") ? "comptesVendeurs" : "comptesClients";
+    const comptes = JSON.parse(localStorage.getItem(cleStockage)) || [];
 
-let type=document.getElementById("type").value;
+    // 3. Chercher l'utilisateur dans la liste
+    const utilisateur = comptes.find(c => c.email === emailSaisi && c.mdp === mdpSaisi);
 
-if(type=="client"){
-window.location="client-dashboard.html";
+    // 4. Vérifier si l'utilisateur a été trouvé
+    if (utilisateur) {
+        // Enregistrer la session
+        localStorage.setItem("utilisateurConnecte", JSON.stringify({
+            ...utilisateur,
+            type: type
+        }));
+        
+        alert("Connexion réussie !");
+
+        // Redirection vers la bonne page
+        if (type === "vendeur") {
+            window.location.href = "vendeur-dashboard.html";
+        } else {
+            window.location.href = "client-dashboard.html";
+        }
+    } else {
+        alert("Email ou mot de passe incorrect pour ce profil.");
+    }
 }
-else{
-window.location="vendeur-dashboard.html";
-}
-
-}
-
 </script>
 
 </body>
