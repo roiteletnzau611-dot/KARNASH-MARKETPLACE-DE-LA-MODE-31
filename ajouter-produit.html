@@ -67,7 +67,7 @@ const fichier = document.getElementById("photo").files[0];
 // AJOUTEZ CE BLOC ICI :
 function enregistrer(photo) {
     const produit = {
-        boutique: "H-love", 
+        boutique: "H-love",
         nom: document.getElementById("nom").value,
         categorie: document.getElementById("categorie").value,
         prix: document.getElementById("prix").value,
@@ -81,6 +81,7 @@ function enregistrer(photo) {
 
     alert("Produit publié avec succès.");
     window.location.href = "mes-produits.html";
+}
 }
 
 // Puis vient votre bloc "if (fichier) {" que vous avez déjà
