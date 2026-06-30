@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paramètres du client</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 
 <style>
-
-*{
+/* Le CSS sera ajouté dans la Partie 2 */
+  *{
 margin:0;
 padding:0;
 box-sizing:border-box;
@@ -17,35 +17,36 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f4f6fb;
+background:#f5f7fb;
 }
 
 header{
-background:#0d6efd;
+background:#2563eb;
 color:white;
-padding:18px;
+padding:20px;
 text-align:center;
-font-size:22px;
+font-size:24px;
 font-weight:bold;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
 }
 
 .container{
-max-width:700px;
-margin:20px auto;
-padding:15px;
+max-width:900px;
+margin:30px auto;
+padding:20px;
 }
 
 .card{
 background:white;
+padding:20px;
+margin-bottom:20px;
 border-radius:15px;
-padding:18px;
-margin-bottom:18px;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
 }
 
-.card h3{
-margin-bottom:15px;
-color:#0d6efd;
+.card h2{
+margin-bottom:20px;
+color:#2563eb;
 }
 
 .item{
@@ -53,95 +54,93 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:15px 0;
-border-bottom:1px solid #eee;
+border-bottom:1px solid #ddd;
 }
 
 .item:last-child{
-border:none;
-}
-
-.item i{
-margin-right:10px;
-color:#0d6efd;
+border-bottom:none;
 }
 
 button{
-background:#0d6efd;
+background:#2563eb;
 color:white;
 border:none;
-padding:10px 18px;
+padding:10px 20px;
 border-radius:8px;
 cursor:pointer;
+font-size:15px;
+transition:.3s;
 }
 
 button:hover{
-background:#084298;
-}
-
-.switch{
-position:relative;
-display:inline-block;
-width:52px;
-height:28px;
-}
-
-.switch input{
-display:none;
-}
-
-.slider{
-position:absolute;
-cursor:pointer;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:#ccc;
-transition:.4s;
-border-radius:30px;
-}
-
-.slider:before{
-position:absolute;
-content:"";
-height:22px;
-width:22px;
-left:3px;
-bottom:3px;
-background:white;
-transition:.4s;
-border-radius:50%;
-}
-
-input:checked + .slider{
-background:#0d6efd;
-}
-
-input:checked + .slider:before{
-transform:translateX(24px);
+background:#1746a2;
 }
 
 .logout{
-background:#ff9800;
+background:#f59e0b;
+}
+
+.logout:hover{
+background:#d97706;
 }
 
 .delete{
-background:#dc3545;
+background:#dc2626;
+margin-top:20px;
+width:100%;
+}
+
+.delete:hover{
+background:#b91c1c;
 }
 
 select{
-padding:8px;
+padding:10px;
 border-radius:8px;
+border:1px solid #ccc;
+width:100%;
+margin-top:10px;
 }
 
-  .dark-mode{
-    background:#121212;
-    color:white;
+input[type="checkbox"]{
+transform:scale(1.4);
+cursor:pointer;
+}
+
+.dark-mode{
+background:#111827;
+color:white;
 }
 
 .dark-mode .card{
-    background:#222;
-    color:white;
+background:#1f2937;
+color:white;
+}
+
+.dark-mode h2{
+color:#60a5fa;
+}
+
+.dark-mode button{
+background:#3b82f6;
+}
+
+@media(max-width:768px){
+
+.container{
+padding:10px;
+}
+
+.item{
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+}
+
+button{
+width:100%;
+}
+
 }
 </style>
 
@@ -150,120 +149,85 @@ border-radius:8px;
 <body>
 
 <header>
-⚙️ Paramètres
+<h1>⚙️ Paramètres</h1>
 </header>
 
 <div class="container">
 
 <div class="card">
-
-<h3>👤 Profil</h3>
+<h2>👤 Informations personnelles</h2>
 
 <div class="item">
-<span><i class="fa fa-user"></i>Nom</span>
-<button>Modifier</button>
+<span>Nom</span>
+<button onclick="modifierNom()">Modifier</button>
 </div>
 
 <div class="item">
-<span><i class="fa fa-envelope"></i>Email</span>
-<button>Modifier</button>
+<span>Email</span>
+<button onclick="modifierEmail()">Modifier</button>
 </div>
 
 <div class="item">
-<span><i class="fa fa-phone"></i>Téléphone</span>
-<button>Modifier</button>
+<span>Téléphone</span>
+<button onclick="modifierTelephone()">Modifier</button>
+</div>
+
+<div class="item">
+<span>Photo de profil</span>
+<button onclick="changerPhoto()">Changer</button>
 </div>
 
 </div>
 
 <div class="card">
 
-<h3>🔒 Sécurité</h3>
+<h2>🔒 Sécurité</h2>
 
 <div class="item">
-<span><i class="fa fa-lock"></i>Modifier le mot de passe</span>
-<button>Changer</button>
-</div>
-
-<div class="item">
-<span><i class="fa fa-shield"></i>Authentification 2FA</span>
-
-<label class="switch">
-<input type="checkbox">
-<span class="slider"></span>
-</label>
-
+<span>Modifier le mot de passe</span>
+<button onclick="modifierMotDePasse()">Changer</button>
 </div>
 
 </div>
 
 <div class="card">
 
-<h3>🔔 Notifications</h3>
+<h2>🔔 Notifications</h2>
 
 <div class="item">
-<span>Commandes</span>
-
-<label class="switch">
-<input type="checkbox" checked>
-<span class="slider"></span>
-</label>
-
-</div>
-
-<div class="item">
-<span>Promotions</span>
-
-<label class="switch">
-<input type="checkbox">
-<span class="slider"></span>
-</label>
-
+<span>Activer les notifications</span>
+<input type="checkbox" id="notifications">
 </div>
 
 </div>
 
 <div class="card">
 
-<h3>🌙 Apparence</h3>
+<h2>🌙 Apparence</h2>
 
 <div class="item">
 <span>Mode sombre</span>
-
-<label class="switch">
-<input type="checkbox">
-<span class="slider"></span>
-</label>
-
+<input type="checkbox" id="modeSombre">
 </div>
 
 </div>
 
 <div class="card">
 
-<h3>🌍 Langue</h3>
+<h2>🌍 Langue</h2>
 
-<div class="item">
-
-<select>
-
+<select id="langue">
 <option>Français</option>
-
 <option>English</option>
-
 <option>Lingala</option>
-
 <option>Swahili</option>
-
 </select>
 
 </div>
 
-</div>
-
 <div class="card">
 
-<h3>📍 Adresse</h3>
+<h2>📍 Adresse</h2>
 
 <div class="item">
 <span>Adresse de livraison</span>
@@ -274,7 +238,7 @@ border-radius:8px;
 
 <div class="card">
 
-<h3>💳 Paiement</h3>
+<h2>💳 Paiement</h2>
 
 <div class="item">
 <span>Moyens de paiement</span>
@@ -285,126 +249,153 @@ border-radius:8px;
 
 <div class="card">
 
-<h3>🚪 Session</h3>
-
-<div class="item">
-<button class="logout">
-Déconnexion
+<button class="logout" onclick="logout()">
+🚪 Déconnexion
 </button>
-</div>
 
-</div>
-
-<div class="card">
-
-<h3>🗑️ Compte</h3>
-
-<div class="item">
-
-<button class="delete">
-Supprimer le compte
+<button class="delete" onclick="supprimerCompte()">
+🗑️ Supprimer le compte
 </button>
 
 </div>
 
 </div>
 
-</div>
-
+<!-- Le JavaScript sera ajouté dans la Partie 3 -->
 <script>
+// Charger les données enregistrées
+window.onload = function () {
 
-document.querySelector(".delete").onclick=function(){
+    if(localStorage.getItem("modeSombre") === "oui"){
+        document.body.classList.add("dark-mode");
+        document.getElementById("modeSombre").checked = true;
+    }
 
-if(confirm("Voulez-vous vraiment supprimer votre compte ?")){
+    if(localStorage.getItem("notifications") === "oui"){
+        document.getElementById("notifications").checked = true;
+    }
 
-alert("Compte supprimé.");
-
-}
-
-}
-
-document.querySelector(".logout").onclick=function(){
-
-if(confirm("Voulez-vous vous déconnecter ?")){
-
-alert("Déconnexion réussie.");
-
-}
+    if(localStorage.getItem("langue")){
+        document.getElementById("langue").value = localStorage.getItem("langue");
+    }
 
 }
 
 // Modifier le nom
-function modifierNom() {
+function modifierNom(){
     let nom = prompt("Entrez votre nouveau nom :");
-    if (nom) {
+    if(nom){
         localStorage.setItem("nomClient", nom);
         alert("Nom modifié avec succès.");
-        location.reload();
     }
 }
 
-// Modifier l'email
-function modifierEmail() {
+// Modifier l'e-mail
+function modifierEmail(){
     let email = prompt("Entrez votre nouvel e-mail :");
-    if (email) {
+    if(email){
         localStorage.setItem("emailClient", email);
-        alert("E-mail modifié.");
+        alert("E-mail enregistré.");
     }
 }
 
 // Modifier le téléphone
-function modifierTelephone() {
+function modifierTelephone(){
     let tel = prompt("Entrez votre nouveau numéro :");
-    if (tel) {
+    if(tel){
         localStorage.setItem("telephoneClient", tel);
-        alert("Téléphone modifié.");
+        alert("Téléphone enregistré.");
     }
 }
 
 // Modifier le mot de passe
-function modifierMotDePasse() {
-    let mdp = prompt("Nouveau mot de passe :");
-    if (mdp) {
+function modifierMotDePasse(){
+    let mdp = prompt("Entrez votre nouveau mot de passe :");
+    if(mdp){
         localStorage.setItem("motDePasseClient", mdp);
         alert("Mot de passe modifié.");
     }
 }
 
-// Déconnexion
-function logout() {
-    if (confirm("Voulez-vous vous déconnecter ?")) {
-        localStorage.removeItem("clientConnecte");
-        window.location.href = "index.html";
+// Changer la photo
+function changerPhoto(){
+    alert("Cette fonctionnalité sera ajoutée prochainement.");
+}
+
+// Modifier l'adresse
+function modifierAdresse(){
+    let adresse = prompt("Entrez votre nouvelle adresse :");
+    if(adresse){
+        localStorage.setItem("adresseClient", adresse);
+        alert("Adresse enregistrée.");
     }
+}
+
+// Paiement
+function gererPaiement(){
+    alert("Gestion des moyens de paiement bientôt disponible.");
+}
+
+// Notifications
+document.getElementById("notifications").addEventListener("change", function(){
+
+    if(this.checked){
+        localStorage.setItem("notifications","oui");
+    }else{
+        localStorage.setItem("notifications","non");
+    }
+
+});
+
+// Mode sombre
+document.getElementById("modeSombre").addEventListener("change", function(){
+
+    document.body.classList.toggle("dark-mode");
+
+    if(this.checked){
+        localStorage.setItem("modeSombre","oui");
+    }else{
+        localStorage.setItem("modeSombre","non");
+    }
+
+});
+
+// Langue
+document.getElementById("langue").addEventListener("change", function(){
+
+    localStorage.setItem("langue",this.value);
+
+    alert("Langue changée : " + this.value);
+
+});
+
+// Déconnexion
+function logout(){
+
+    if(confirm("Voulez-vous vraiment vous déconnecter ?")){
+
+        localStorage.removeItem("clientConnecte");
+
+        window.location.href="index.html";
+
+    }
+
 }
 
 // Supprimer le compte
-function supprimerCompte() {
-    if (confirm("Supprimer définitivement votre compte ?")) {
+function supprimerCompte(){
+
+    if(confirm("Voulez-vous supprimer définitivement votre compte ?")){
+
         localStorage.clear();
-        alert("Compte supprimé.");
-        window.location.href = "index.html";
+
+        alert("Votre compte a été supprimé.");
+
+        window.location.href="index.html";
+
     }
-}
 
-// Mode sombre
-function modeSombre() {
-    document.body.classList.toggle("dark-mode");
 }
-
-function modifierAdresse() {
-    let adresse = prompt("Entrez votre nouvelle adresse de livraison :");
-    if (adresse) {
-        localStorage.setItem("adresseClient", adresse);
-        alert("Adresse enregistrée avec succès.");
-    }
-}
-
-function gererPaiement() {
-    alert("La gestion des moyens de paiement sera bientôt disponible.");
-}
-
 </script>
-
 </body>
 </html>
