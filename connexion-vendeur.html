@@ -113,9 +113,18 @@ e.preventDefault();
 
 const vendeur=JSON.parse(localStorage.getItem("vendeur"));
 
-if(!vendeur){
-alert("Aucun compte vendeur trouvé.");
-return;
+if(email===vendeur.email && password===vendeur.password){
+
+localStorage.setItem("vendeurConnecte","true");
+
+alert("Bienvenue " + vendeur.nom + " !");
+
+window.location.href="vendeur-dashboard.html";
+
+}else{
+
+alert("Adresse e-mail ou mot de passe incorrect.");
+
 }
 
 const email=document.getElementById("email").value;
