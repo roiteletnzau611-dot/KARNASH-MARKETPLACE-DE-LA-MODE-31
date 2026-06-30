@@ -76,6 +76,28 @@ button:hover{
 
 <form>
 
+    <form id="formProduit">
+
+<input type="text" id="nom" placeholder="Nom du produit" required>
+
+<select id="categorie" required>
+    <option value="">Choisir une catégorie</option>
+    <option>Maison</option>
+    <option>Mode</option>
+    <option>Beauté</option>
+    <option>Électronique</option>
+</select>
+
+<input type="number" id="prix" placeholder="Prix" required>
+
+<textarea id="description" placeholder="Description"></textarea>
+
+<input type="file" id="photo" accept="image/*">
+
+<button type="submit">Publier le produit</button>
+
+
+
 <div class="form-group">
 <label>Nom du produit</label>
 <input type="text" placeholder="Nom du produit">
@@ -134,6 +156,48 @@ Publier le produit
 </form>
 
 </div>
+
+    <script>
+document.getElementById("formProduit").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const lecteur=new FileReader();
+const fichier=document.getElementById("photo").files[0];
+
+function enregistrer(photo){
+
+const produit={
+nom:document.getElementById("nom").value,
+categorie:document.getElementById("categorie").value,
+prix:document.getElementById("prix").value,
+description:document.getElementById("description").value,
+photo:photo
+};
+
+let produits=JSON.parse(localStorage.getItem("produits"))||[];
+
+produits.push(produit);
+
+localStorage.setItem("produits",JSON.stringify(produits));
+
+alert("Produit publié avec succès.");
+
+window.location.href="mes-produits.html";
+
+}
+
+if(fichier){
+lecteur.onload=function(){
+enregistrer(lecteur.result);
+}
+lecteur.readAsDataURL(fichier);
+}else{
+enregistrer("");
+}
+
+});
+</script>
 
 </body>
 </html>
