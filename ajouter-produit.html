@@ -66,8 +66,18 @@ const fichier = document.getElementById("photo").files[0];
 
 // AJOUTEZ CE BLOC ICI :
 function enregistrer(photo) {
+    // On récupère le vendeur connecté
+    const vendeur = JSON.parse(localStorage.getItem("vendeurConnecte"));
+    
+    // Si aucun vendeur n'est connecté, on arrête tout
+    if (!vendeur) {
+        alert("Vous devez être connecté pour publier.");
+        window.location.href = "connexion-vendeur.html";
+        return;
+    }
+
     const produit = {
-        boutique: "H-love",
+        boutique: vendeur.nomBoutique, // On utilise le nom de la boutique du vendeur connecté
         nom: document.getElementById("nom").value,
         categorie: document.getElementById("categorie").value,
         prix: document.getElementById("prix").value,
@@ -79,8 +89,9 @@ function enregistrer(photo) {
     produits.push(produit);
     localStorage.setItem("produits", JSON.stringify(produits));
 
-    alert("Produit publié avec succès.");
+    alert("Produit publié dans la boutique " + vendeur.nomBoutique);
     window.location.href = "mes-produits.html";
+}
 }
 }
 
