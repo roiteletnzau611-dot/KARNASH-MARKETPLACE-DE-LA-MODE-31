@@ -4,32 +4,210 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Vendeur</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
-        body { background:#f4f7fb; display:flex; min-height:100vh; }
-        .sidebar { width:260px; background:#0d1b2a; color:white; padding:20px; position:fixed; height:100%; }
-        .logo { font-size:24px; font-weight:bold; margin-bottom:30px; text-align:center; }
-        .sidebar ul { list-style:none; }
-        .sidebar ul li { margin:15px 0; }
-        .sidebar ul li a { text-decoration:none; color:white; display:flex; align-items:center; gap:12px; padding:12px; border-radius:10px; transition:0.3s; }
-        .sidebar ul li a:hover, .sidebar ul li a.active { background:#1b263b; }
-        .main { margin-left:260px; width:calc(100% - 260px); padding:20px; }
-        .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:25px; }
-        .search-box { background:white; padding:10px 15px; border-radius:12px; width:300px; display:flex; align-items:center; gap:10px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
-        .search-box input { border:none; outline:none; width:100%; }
-        .profile { display:flex; align-items:center; gap:12px; }
-        .profile img { width:45px; height:45px; border-radius:50%; }
-        .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px; margin-bottom:30px; }
-        .card { background:white; padding:20px; border-radius:16px; box-shadow:0 3px 10px rgba(0,0,0,0.08); }
-        .section { background:white; padding:20px; border-radius:16px; box-shadow:0 3px 10px rgba(0,0,0,0.08); margin-bottom:25px; }
-        .btn { padding:8px 12px; border:none; border-radius:8px; cursor:pointer; color:white; }
-        .btn-add { background:#28a745; padding:12px 18px; margin-bottom:15px; }
-        @media(max-width:900px){ .sidebar { width:80px; } .sidebar ul li a span { display:none; } .main { margin-left:80px; width:calc(100% - 80px); } }
-    </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
+    body{
+        background:#f4f7fb;
+        display:flex;
+        min-height:100vh;
+    }
+    /* Sidebar */
+    .sidebar{
+        width:260px;
+        background:#0d1b2a;
+        color:white;
+        padding:20px;
+        position:fixed;
+        height:100%;
+    }
+    .logo{
+        font-size:24px;
+        font-weight:bold;
+        margin-bottom:30px;
+        text-align:center;
+    }
+    .sidebar ul{
+        list-style:none;
+    }
+    .sidebar ul li{
+        margin:15px 0;
+    }
+    .sidebar ul li a{
+        text-decoration:none;
+        color:white;
+        display:flex;
+        align-items:center;
+        gap:12px;
+        padding:12px;
+        border-radius:10px;
+        transition:0.3s;
+    }
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active{
+        background:#1b263b;
+    }
+    /* Main */
+    .main{
+        margin-left:260px;
+        width:calc(100% - 260px);
+        padding:20px;
+    }
+    /* Topbar */
+    .topbar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:25px;
+    }
+    .search-box{
+        background:white;
+        padding:10px 15px;
+        border-radius:12px;
+        width:300px;
+        display:flex;
+        align-items:center;
+        gap:10px;
+        box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
+    .search-box input{
+        border:none;
+        outline:none;
+        width:100%;
+    }
+    .profile{
+        display:flex;
+        align-items:center;
+        gap:12px;
+    }
+    .profile img{
+        width:45px;
+        height:45px;
+        border-radius:50%;
+    }
+    /* Cards */
+    .cards{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+        gap:20px;
+        margin-bottom:30px;
+    }
+    .card{
+        background:white;
+        padding:20px;
+        border-radius:16px;
+        box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    }
+    .card i{
+        font-size:28px;
+        color:#007bff;
+        margin-bottom:10px;
+    }
+    .card h3{
+        margin-bottom:8px;
+        color:#333;
+    }
+    .card p{
+        font-size:24px;
+        font-weight:bold;
+        color:#0d1b2a;
+    }
+    /* Sections */
+    .section{
+        background:white;
+        padding:20px;
+        border-radius:16px;
+        box-shadow:0 3px 10px rgba(0,0,0,0.08);
+        margin-bottom:25px;
+    }
+    .section h2{
+        margin-bottom:20px;
+        color:#0d1b2a;
+    }
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
+    table th, table td{
+        padding:12px;
+        text-align:left;
+        border-bottom:1px solid #eee;
+    }
+    table th{
+        background:#f8f9fa;
+    }
+    .btn{
+        padding:8px 12px;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        color:white;
+    }
+    .btn-edit{
+        background:#007bff;
+    }
+    .btn-delete{
+        background:#dc3545;
+    }
+    .btn-add{
+        background:#28a745;
+        padding:12px 18px;
+        margin-bottom:15px;
+    }
+    /* Form */
+    .form-grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+        gap:15px;
+    }
+    .form-grid input,
+    .form-grid textarea,
+    .form-grid select{
+        width:100%;
+        padding:12px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        outline:none;
+    }
+    .form-grid textarea{
+        min-height:120px;
+        resize:vertical;
+    }
+    /* Responsive */
+    @media(max-width:900px){
+        .sidebar{
+            width:80px;
+        }
+        .sidebar .logo{
+            font-size:18px;
+        }
+        .sidebar ul li a span{
+            display:none;
+        }
+        .main{
+            margin-left:80px;
+            width:calc(100% - 80px);
+        }
+    }
+    @media(max-width:600px){
+        .topbar{
+            flex-direction:column;
+            gap:15px;
+            align-items:flex-start;
+        }
+        .search-box{
+            width:100%;
+        }
+    }
+</style>
 </head>
 <body>
-
+<!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">MonShop</div>
     <ul>
@@ -37,17 +215,16 @@
         <li><a href="#produits"><i class="fa fa-box"></i> <span>Produits</span></a></li>
         <li><a href="#ajouter"><i class="fa fa-plus-circle"></i> <span>Ajouter</span></a></li>
         <li><a href="#commandes"><i class="fa fa-clipboard-list"></i> <span>Commandes</span></a></li>
+        <li><a href="#revenus"><i class="fa fa-wallet"></i> <span>Revenus</span></a></li>
+        <li><a href="#stats"><i class="fa fa-chart-pie"></i> <span>Statistiques</span></a></li>
+        <li><a href="#messages"><i class="fa fa-comments"></i> <span>Messages</span></a></li>
+        <li><a href="#avis"><i class="fa fa-star"></i> <span>Avis</span></a></li>
         <li><a href="#parametres"><i class="fa fa-cog"></i> <span>Paramètres</span></a></li>
-        <li>
-            <a href="#" onclick="logout()">
-                <i class="fa fa-right-from-bracket"></i>
-                <span>Déconnexion</span>
-            </a>
-        </li>
     </ul>
 </aside>
-
+<!-- Main -->
 <main class="main">
+    <!-- Topbar -->
     <div class="topbar">
         <div class="search-box">
             <i class="fa fa-search"></i>
@@ -61,44 +238,148 @@
             </div>
         </div>
     </div>
-
+    <!-- Cards -->
     <section class="cards" id="dashboard">
-        <div class="card"><h3>Commandes</h3><p>128</p></div>
-        <div class="card"><h3>Produits</h3><p>42</p></div>
-        <div class="card"><h3>Revenus</h3><p>2 450 $</p></div>
+        <div class="card">
+            <i class="fa fa-shopping-cart"></i>
+            <h3>Commandes</h3>
+            <p>128</p>
+        </div>
+        <div class="card">
+            <i class="fa fa-box"></i>
+            <h3>Produits</h3>
+            <p>42</p>
+        </div>
+        <div class="card">
+            <i class="fa fa-wallet"></i>
+            <h3>Revenus</h3>
+            <p>2 450 $</p>
+        </div>
+        <div class="card">
+            <i class="fa fa-star"></i>
+            <h3>Note</h3>
+            <p>4.8/5</p>
+        </div>
+    </section>
+    <!-- Produits -->
+    <section class="section" id="produits">
+        <h2>Gestion des produits</h2>
+        <button class="btn btn-add">
+            <i class="fa fa-plus"></i> Ajouter un produit
+        </button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chaussures</td>
+                    <td>50 $</td>
+                    <td>20</td>
+                    <td>
+                        <button class="btn btn-edit">Modifier</button>
+                        <button class="btn btn-delete">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Téléphone</td>
+                    <td>300 $</td>
+                    <td>10</td>
+                    <td>
+                        <button class="btn btn-edit">Modifier</button>
+                        <button class="btn btn-delete">Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- Ajouter -->
+    <section class="section" id="ajouter">
+        <h2>Ajouter un produit</h2>
+        <div class="form-grid">
+            <input type="text" placeholder="Nom du produit" />
+            <input type="number" placeholder="Prix" />
+            <input type="number" placeholder="Quantité" />
+            <select>
+                <option>Choisir une catégorie</option>
+                <option>Électronique</option>
+                <option>Mode</option>
+                <option>Maison</option>
+            </select>
+            <textarea placeholder="Description du produit"></textarea>
+        </div>
+        <br>
+        <button class="btn btn-add">Publier le produit</button>
+    </section>
+    <!-- Commandes -->
+    <section class="section" id="commandes">
+        <h2>Commandes récentes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Produit</th>
+                    <th>Statut</th>
+                    <th>Montant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jean</td>
+                    <td>Téléphone</td>
+                    <td>En préparation</td>
+                    <td>300 $</td>
+                </tr>
+                <tr>
+                    <td>Marie</td>
+                    <td>Chaussures</td>
+                    <td>Livrée</td>
+                    <td>50 $</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- Revenus -->
+    <section class="section" id="revenus">
+        <h2>Revenus</h2>
+        <p><strong>Solde disponible :</strong> 1 850 $</p>
+        <p><strong>En attente :</strong> 600 $</p>
+        <p><strong>Commission plateforme :</strong> 5 %</p>
+        <br>
+        <button class="btn btn-add">Demander un retrait</button>
+    </section>
+    <!-- Statistiques -->
+    <section class="section" id="stats">
+        <h2>Statistiques</h2>
+        <p>Graphique des ventes et performances à intégrer ici.</p>
+    </section>
+    <!-- Messages -->
+    <section class="section" id="messages">
+        <h2>Messages</h2>
+        <p>Aucun nouveau message.</p>
+    </section>
+    <!-- Avis -->
+    <section class="section" id="avis">
+        <h2>Avis clients</h2>
+        <p>⭐ ⭐ ⭐ ⭐ ⭐ - Très bon vendeur !</p>
+        <p>⭐ ⭐ ⭐ ⭐ - Livraison rapide.</p>
+    </section>
+    <!-- Paramètres -->
+    <section class="section" id="parametres">
+        <h2>Paramètres</h2>
+        <div class="form-grid">
+            <input type="text" placeholder="Nom de la boutique" />
+            <input type="email" placeholder="Email" />
+            <input type="tel" placeholder="Téléphone" />
+        </div>
+        <br>
+        <button class="btn btn-add">Enregistrer</button>
     </section>
 </main>
-
-<script>
-    // 1. Vérification de la connexion
-    if (localStorage.getItem("vendeurConnecte") !== "true") {
-        window.location.href = "connexion-vendeur.html";
-    }
-
-    // 2. Récupération sécurisée du profil
-    const vendeur = JSON.parse(localStorage.getItem("vendeur") || "{}");
-
-    // 3. Affichage du nom
-   const profilNom = document.querySelector(".profile strong");
-
-if (vendeur.nom && profilNom) {
-    profilNom.textContent = vendeur.nom;
-}
-
-    // 4. Fonction de Déconnexion
-   function logout() {
-
-    if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
-
-        localStorage.removeItem("vendeurConnecte");
-        localStorage.removeItem("vendeur");
-
-        window.location.href = "index.html";
-
-    }
-
-}
-</script>
-
 </body>
 </html>
