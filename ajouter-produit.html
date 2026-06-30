@@ -60,28 +60,14 @@
         const lecteur = new FileReader();
         const fichier = document.getElementById("photo").files[0];
 
-        function enregistrer(photo) {
-            const produit = {
-                nom: document.getElementById("nom").value,
-                categorie: document.getElementById("categorie").value,
-                prix: document.getElementById("prix").value,
-                description: document.getElementById("description").value,
-                photo: photo
-            };
+     // Dans mes-produits.html, le début du script doit ressembler à ça :
+const monNomDeBoutique = "H-love"; 
+const tousLesProduits = JSON.parse(localStorage.getItem("produits")) || [];
 
-            // Récupération des produits existants ou création d'un tableau vide
-            let produits = JSON.parse(localStorage.getItem("produits")) || [];
-            
-            // Ajout du nouveau produit
-            produits.push(produit);
-            
-            // Sauvegarde dans le localStorage
-            localStorage.setItem("produits", JSON.stringify(produits));
+// On filtre pour ne garder que ceux de "H-love"
+const mesProduits = tousLesProduits.filter(p => p.boutique === monNomDeBoutique);
 
-            alert("Produit publié avec succès.");
-            
-            // Redirection (Assurez-vous que le fichier mes-produits.html existe)
-            window.location.href = "mes-produits.html";
+// Ensuite, vous utilisez 'mesProduits' pour créer vos cartes (forEach...)
         }
 
         // Gestion de l'image (conversion en base64)
