@@ -1,103 +1,139 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Produits</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
-        .container { max-width: 1100px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 30px; color: #1f4e79; }
-        
-        /* Style de la zone vide */
-        .empty-state {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px dashed #ccc;
-            margin-top: 20px;
-        }
-        
-        .btn-add {
-            background: #1f4e79;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajouter un produit</title>
 
-        /* Style de la grille de produits */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        .box {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,.1);
-            text-align: center;
-        }
-        .btn-add {
-    position: relative;
-    z-index: 10;
-    cursor: pointer;
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f6fa;
 }
-    </style>
+
+.container{
+    max-width:900px;
+    margin:40px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+h2{
+    color:#2c3e50;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+
+textarea{
+    resize:vertical;
+}
+
+button{
+    background:#007bff;
+    color:#fff;
+    border:none;
+    padding:15px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#0056b3;
+}
+</style>
+
 </head>
 <body>
 
-<header>
-    <h1>📦 Mes Produits</h1>
-</header>
-
 <div class="container">
-    <!-- Conteneur qui sera rempli par le JavaScript -->
-    <div id="liste-produits" class="grid"></div>
+
+<h2>➕ Ajouter un produit</h2>
+
+<form>
+
+<div class="form-group">
+<label>Nom du produit</label>
+<input type="text" placeholder="Nom du produit">
 </div>
 
-<script>
-    // Récupération des produits depuis le localStorage
-    const produits = JSON.parse(localStorage.getItem("mesProduits")) || [];
-    const conteneur = document.getElementById("liste-produits");
+<div class="form-group">
+<label>Catégorie</label>
 
-    if (produits.length === 0) {
-        // Affichage de l'état "vide"
-        conteneur.innerHTML = `
-            <div class="empty-state">
-                <img src="https://cdn-icons-png.flaticon.com/512/3500/3500833.png" width="80">
-                <h3>Aucun produit publié</h3>
-                <p>Votre boutique est prête ! Ajoutez votre premier article pour commencer à vendre.</p>
-                <button class="btn-add" onclick="window.location.href='ajouter-produit.html'">+ Ajouter un produit</button>
-            </div>
-        `;
-    } else {
-        // Affichage des produits existants
-        produits.forEach(produit => {
-            const card = document.createElement("div");
-            card.className = "box";
-            card.innerHTML = `
-                <img src="${produit.image}" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
-                <h3>${produit.nom}</h3>
-                <p>${produit.prix} FCFA</p>
-            `;
-            conteneur.appendChild(card);
-        });
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-    const btnAjouter = document.querySelector('.btn-add');
-    if (btnAjouter) {
-        btnAjouter.addEventListener('click', function() {
-            window.location.href = 'ajouter-produit.html';
-        });
-    }
-});
-</script>
+<select>
+<option>Électronique</option>
+<option>Mode</option>
+<option>Maison</option>
+<option>Beauté</option>
+<option>Sport</option>
+<option>Automobile</option>
+<option>Autres</option>
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<textarea rows="6"></textarea>
+</div>
+
+<div class="form-group">
+<label>Prix</label>
+<input type="number">
+</div>
+
+<div class="form-group">
+<label>Quantité en stock</label>
+<input type="number">
+</div>
+
+<div class="form-group">
+<label>Photos</label>
+<input type="file" multiple>
+</div>
+
+<div class="form-group">
+<label>Mode de livraison</label>
+
+<select>
+<option>Livraison à domicile</option>
+<option>Retrait en magasin</option>
+<option>Les deux</option>
+</select>
+
+</div>
+
+<button type="submit">
+Publier le produit
+</button>
+
+</form>
+
+</div>
 
 </body>
 </html>
