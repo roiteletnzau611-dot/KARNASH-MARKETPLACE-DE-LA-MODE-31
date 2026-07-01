@@ -3,112 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un produit</title>
+    <title>Mes Produits</title>
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; background: #f5f6fa; }
-        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
-        h2 { color: #2c3e50; text-align: center; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        textarea { height: 100px; resize: vertical; }
-        button { width: 100%; background: #007bff; color: #fff; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 10px; }
-        button:hover { background: #0056b3; }
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 30px; color: #1f4e79; }
+        
+        /* Style de la zone vide */
+        .empty-state {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px dashed #ccc;
+            margin-top: 20px;
+        }
+        
+        .btn-add {
+            background: #1f4e79;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Style de la grille de produits */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.1);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
+<header>
+    <h1>📦 Mes Produits</h1>
+</header>
+
 <div class="container">
-    <h2>➕ Ajouter un produit</h2>
-
-    <form id="formProduit">
-        <div class="form-group">
-            <input type="text" id="nom" placeholder="Nom du produit" required>
-        </div>
-
-        <div class="form-group">
-            <select id="categorie" required>
-                <option value="">Choisir une catégorie</option>
-                <option>Maison</option>
-                <option>Mode</option>
-                <option>Beauté</option>
-                <option>Électronique</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <input type="number" id="prix" placeholder="Prix" required>
-        </div>
-
-        <div class="form-group">
-            <textarea id="description" placeholder="Description"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>Photo du produit :</label>
-            <input type="file" id="photo" accept="image/*">
-        </div>
-
-        <button type="submit">Publier le produit</button>
-    </form>
+    <!-- Conteneur qui sera rempli par le JavaScript -->
+    <div id="liste-produits" class="grid"></div>
 </div>
 
 <script>
-    document.getElementById("formProduit").addEventListener("submit", function(e) {
-        e.preventDefault();
+    // Récupération des produits depuis le localStorage
+    const produits = JSON.parse(localStorage.getItem("mesProduits")) || [];
+    const conteneur = document.getElementById("liste-produits");
 
-        const lecteur = new FileReader();
-        const fichier = document.getElementById("photo").files[0];
-
-     // Dans mes-produits.html, le début du script doit ressembler à ça :
-// ... votre code existant ...
-const fichier = document.getElementById("photo").files[0];
-
-// AJOUTEZ CE BLOC ICI :
-function enregistrer(photo) {
-    // On récupère le vendeur connecté
-    const vendeur = JSON.parse(localStorage.getItem("vendeurConnecte"));
-    
-    // Si aucun vendeur n'est connecté, on arrête tout
-    if (!vendeur) {
-        alert("Vous devez être connecté pour publier.");
-        window.location.href = "connexion-vendeur.html";
-        return;
+    if (produits.length === 0) {
+        // Affichage de l'état "vide"
+        conteneur.innerHTML = `
+            <div class="empty-state">
+                <img src="https://cdn-icons-png.flaticon.com/512/3500/3500833.png" width="80">
+                <h3>Aucun produit publié</h3>
+                <p>Votre boutique est prête ! Ajoutez votre premier article pour commencer à vendre.</p>
+                <button class="btn-add" onclick="window.location.href='ajouter-produit.html'">+ Ajouter un produit</button>
+            </div>
+        `;
+    } else {
+        // Affichage des produits existants
+        produits.forEach(produit => {
+            const card = document.createElement("div");
+            card.className = "box";
+            card.innerHTML = `
+                <img src="${produit.image}" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+                <h3>${produit.nom}</h3>
+                <p>${produit.prix} FCFA</p>
+            `;
+            conteneur.appendChild(card);
+        });
     }
-
-    const produit = {
-        boutique: vendeur.nomBoutique, // On utilise le nom de la boutique du vendeur connecté
-        nom: document.getElementById("nom").value,
-        categorie: document.getElementById("categorie").value,
-        prix: document.getElementById("prix").value,
-        description: document.getElementById("description").value,
-        photo: photo
-    };
-
-    let produits = JSON.parse(localStorage.getItem("produits")) || [];
-    produits.push(produit);
-    localStorage.setItem("produits", JSON.stringify(produits));
-
-    alert("Produit publié dans la boutique " + vendeur.nomBoutique);
-    window.location.href = "mes-produits.html";
-}
-}
-}
-
-// Puis vient votre bloc "if (fichier) {" que vous avez déjà
-if (fichier) {
-// ...
-
-        // Gestion de l'image (conversion en base64)
-        if (fichier) {
-            lecteur.onload = function() {
-                enregistrer(lecteur.result);
-            }
-            lecteur.readAsDataURL(fichier);
-        } else {
-            enregistrer(""); // Pas d'image
-        }
-    });
 </script>
 
 </body>
