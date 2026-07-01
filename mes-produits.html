@@ -84,6 +84,34 @@
             conteneur.appendChild(card);
         });
     }
+    <div id="liste-produits" class="grid"></div>
+
+    // 1. Lire les produits
+    const produits = JSON.parse(localStorage.getItem("mesProduits")) || [];
+    const conteneur = document.getElementById("liste-produits");
+
+    // 2. Vérifier si la liste est vide
+    if (produits.length === 0) {
+        conteneur.innerHTML = `
+            <div class="empty-state">
+                <img src="https://cdn-icons-png.flaticon.com/512/3500/3500833.png" width="80">
+                <h3>Aucun produit publié</h3>
+                <p>Votre boutique est prête ! Ajoutez votre premier article.</p>
+                <button onclick="window.location.href='ajouter-produit.html'">+ Ajouter un produit</button>
+            </div>
+        `;
+    } else {
+        // 3. Afficher les produits
+        produits.forEach(produit => {
+            conteneur.innerHTML += `
+                <div class="box">
+                    <img src="${produit.image}" style="width:100px; height:100px; border-radius:50%;">
+                    <h3>${produit.nom}</h3>
+                    <p>Prix : ${produit.prix} FCFA</p>
+                </div>
+            `;
+        });
+    }
 </script>
 
 </body>
