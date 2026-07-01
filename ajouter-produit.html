@@ -84,28 +84,6 @@
             conteneur.appendChild(card);
         });
     }
-
-    function enregistrerProduit() {
-    // 1. Récupérer les données saisies par l'utilisateur
-    const nouveauProduit = {
-        nom: document.getElementById("nomProduit").value,
-        prix: document.getElementById("prixProduit").value,
-        image: document.getElementById("urlImage").value // ou un fichier
-    };
-
-    // 2. Récupérer la liste existante (ou créer un tableau vide si elle n'existe pas encore)
-    let listeProduits = JSON.parse(localStorage.getItem("mesProduits")) || [];
-
-    // 3. Ajouter le nouveau produit au tableau
-    listeProduits.push(nouveauProduit);
-
-    // 4. Sauvegarder la liste mise à jour dans le LocalStorage
-    localStorage.setItem("mesProduits", JSON.stringify(listeProduits));
-
-    // 5. Rediriger l'utilisateur vers la page de ses produits
-    alert("Produit ajouté avec succès !");
-    window.location.href = "mes-produits.html";
-}
 </script>
 
 </body>
