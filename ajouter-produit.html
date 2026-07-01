@@ -134,6 +134,33 @@ Publier le produit
 </form>
 
 </div>
+<input type="text" id="nom" placeholder="Nom du produit">
+<input type="number" id="prix" placeholder="Prix">
+<input type="text" id="image" placeholder="URL de l'image">
+<button onclick="sauvegarderProduit()">Publier le produit</button>
 
+<script>
+function sauvegarderProduit() {
+    // 1. Créer l'objet produit
+    const nouveauProduit = {
+        nom: document.getElementById('nom').value,
+        prix: document.getElementById('prix').value,
+        image: document.getElementById('image').value
+    };
+
+    // 2. Récupérer la liste existante ou créer un tableau vide
+    let produits = JSON.parse(localStorage.getItem("mesProduits")) || [];
+
+    // 3. Ajouter le nouveau produit
+    produits.push(nouveauProduit);
+
+    // 4. Sauvegarder dans le localStorage
+    localStorage.setItem("mesProduits", JSON.stringify(produits));
+
+    alert("Produit publié avec succès !");
+    window.location.href = "mes-produits.html"; // Redirection
+}
+</script>
+    
 </body>
 </html>
