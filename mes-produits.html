@@ -1,29 +1,90 @@
-<script>
-    const conteneur = document.getElementById("listeProduits");
-    const vendeur = JSON.parse(localStorage.getItem("vendeurConnecte"));
-
-    if (vendeur) {
-        const tousLesProduits = JSON.parse(localStorage.getItem("produits")) || [];
-        // On filtre avec le nom de la boutique du vendeur connecté
-        const mesProduits = tousLesProduits.filter(p => p.boutique === vendeur.nomBoutique);
-
-        if (mesProduits.length === 0) {
-            conteneur.innerHTML = "<p>Aucun produit dans votre boutique.</p>";
-        } else {
-            conteneur.innerHTML = ""; // Vide le message d'attente
-            mesProduits.forEach(produit => {
-                const div = document.createElement("div");
-                div.className = "carte";
-                div.innerHTML = `
-                    ${produit.photo ? `<img src="${produit.photo}">` : ""}
-                    <h3>${produit.nom}</h3>
-                    <p>Prix: ${produit.prix} €</p>
-                    <p>${produit.description}</p>
-                `;
-                conteneur.appendChild(div);
-            });
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Produits</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 30px; color: #1f4e79; }
+        
+        /* Style de la zone vide */
+        .empty-state {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px dashed #ccc;
+            margin-top: 20px;
         }
+        
+        .btn-add {
+            background: #1f4e79;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Style de la grille de produits */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📦 Mes Produits</h1>
+</header>
+
+<div class="container">
+    <!-- Conteneur qui sera rempli par le JavaScript -->
+    <div id="liste-produits" class="grid"></div>
+</div>
+
+<script>
+    // Récupération des produits depuis le localStorage
+    const produits = JSON.parse(localStorage.getItem("mesProduits")) || [];
+    const conteneur = document.getElementById("liste-produits");
+
+    if (produits.length === 0) {
+        // Affichage de l'état "vide"
+        conteneur.innerHTML = `
+            <div class="empty-state">
+                <img src="https://cdn-icons-png.flaticon.com/512/3500/3500833.png" width="80">
+                <h3>Aucun produit publié</h3>
+                <p>Votre boutique est prête ! Ajoutez votre premier article pour commencer à vendre.</p>
+                <button class="btn-add" onclick="window.location.href='ajouter-produit.html'">+ Ajouter un produit</button>
+            </div>
+        `;
     } else {
-        conteneur.innerHTML = "<p>Veuillez vous connecter pour voir vos produits.</p>";
+        // Affichage des produits existants
+        produits.forEach(produit => {
+            const card = document.createElement("div");
+            card.className = "box";
+            card.innerHTML = `
+                <img src="${produit.image}" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+                <h3>${produit.nom}</h3>
+                <p>${produit.prix} FCFA</p>
+            `;
+            conteneur.appendChild(card);
+        });
     }
 </script>
+
+</body>
+</html>
