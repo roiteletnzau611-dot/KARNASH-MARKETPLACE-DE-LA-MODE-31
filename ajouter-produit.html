@@ -43,6 +43,11 @@
             box-shadow: 0 5px 15px rgba(0,0,0,.1);
             text-align: center;
         }
+        .btn-add {
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -84,6 +89,14 @@
             conteneur.appendChild(card);
         });
     }
+    document.addEventListener('DOMContentLoaded', function() {
+    const btnAjouter = document.querySelector('.btn-add');
+    if (btnAjouter) {
+        btnAjouter.addEventListener('click', function() {
+            window.location.href = 'ajouter-produit.html';
+        });
+    }
+});
 </script>
 
 </body>
